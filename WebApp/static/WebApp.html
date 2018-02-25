@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Adaptive Schedule</title>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!-- importing the java script -->
+    </head>
+
+    <body>
+        <h1>Fill out the forms and submit. </h1>
+        <form id="schedule_info">
+        	Day: <br>
+        	<input type="text" name="day" value="20170912"><br>
+        	Number of classes: <br>
+        	<input type="text" name="numSameClasses" value="5"><br>
+        	#sameDays:<br>
+        	<input type="text" name="numSameDays" value="5"><br>
+        	cutoff Percentage:<br>
+        	<input type="text" name="cutoffPercentage" value="0.5"><br>
+        
+	        Select Building:
+	        <select name="building">
+			  <option value="CIEE">CIEE</option>
+			</select>
+
+			Select Zone:
+	        <select name="zone">
+	          <option value="entireBuilding">Entire Building</option>
+			  <option value="SouthZone">South Zone</option>
+			  <option value="SorthZone">North Zone</option>
+			</select>
+
+			<input type="button" value="Click Me!" onclick="alert('Spam')">
+			<input type="submit">
+		</form>
+    <script>
+    document.getElementById("schedule_info").addEventListener('submit', function(e) {
+        if (e.preventDefault) e.preventDefault();
+
+        var form = new FormData(document.getElementById('schedule_info'));
+
+        console.log('submit!');
+        console.log(form);
+
+        axios.post('/test', form)
+        .then(function (response){
+            console.log(response);
+        })
+        .catch(function (error){
+            console.log(error);
+        });
+
+    });
+
+    </script>
+
+
+    </body>
+
+
+</html>
