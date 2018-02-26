@@ -16,7 +16,7 @@
         	<input type="text" name="numSameDays" value="5"><br>
         	cutoff Percentage:<br>
         	<input type="text" name="cutoffPercentage" value="0.5"><br>
-        
+
 	        Select Building:
 	        <select name="building">
 			  <option value="CIEE">CIEE</option>
@@ -40,8 +40,16 @@
 
         console.log('submit!');
         console.log(form);
+        var data = {};
+        var keyiter = form.keys();
+        var next = keyiter.next();
+        while (!next.done) {
+            data[next.value] = form.get(next.value);
+            next = keyiter.next();
+        }
+        console.log(data)
 
-        axios.post('/test', form)
+        axios.post('/test', data)
         .then(function (response){
             console.log(response);
         })
